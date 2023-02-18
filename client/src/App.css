@@ -84,7 +84,7 @@
 .chat-input-text-area {
   position: relative;
   bottom: 0;
-  background-color: rgba(104, 93, 114, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
   width: 90%;
   border-radius: 5px;
   border: 10px;
