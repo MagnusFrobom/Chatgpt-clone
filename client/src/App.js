@@ -13,60 +13,53 @@ function App() {
     message: "Use me"
   }]);
 
+function clearChat(){
+  setChatLog([]);
+}
+
   async function handleSubmit(e){
       e.preventDefault();
-    setChatLog([...chatLog, { user: "me", message: `${input}`
-    } ])
-      setInput("");
+    let chatLogNew = [...chatLog, { user: "me", message: `${input}`
+    } ]
+    setInput("");
+
+      const messages = chatLogNew.map((message) =>
+      message.message).join("\n")
       const response = await fetch("http://localhost:3080/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            message: chatLog.map((message) => message.message).join("")
+            message: messages
           })
         });
       const data = await response.json();
-      setChatLog([...chatLog, { user: "gpt", message: `${data.message}`} ])
-      console.log(data.message);
+      setChatLog([...chatLogNew, { user: "gpt", message: `${data.message}`} ])
   }
 
   return (
     <div className="App">
       <aside className="left-sidemenu">
-        <div className="side-menu-button">
+        <div className="side-menu-button" onClick={clearChat}>
         <span>+</span>  New chat
         </div> 
       </aside>
       <section className="chatbox">
         <div className="chat-log">
         {chatLog.map((message, index) => (
-          <ChatMessage key={index} message={message} />
+          <ChatMessage key={index} message={message}/>
         ))}
-          <div className="chat-message chatgpt">
-            <div className="chat-message-center">
-              <div className="avatar chatgpt">
-                
-              </div>
-              <div className="message">
-                I'm your AI!
-              </div>
-            </div>
-          </div>  
-
-        </div>
-
+      </div>
         <div className="chat-input-holder">
-        <form onSubmit={handleSubmit}>
-
-        <input
-        rows="1"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        className="chat-input-text-area">
-        </input>
-        </form>
+          <form onSubmit={handleSubmit}>
+            <input
+              rows="1"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="chat-input-text-area">
+            </input>
+          </form>
         </div>
       </section>
     </div>
@@ -100,7 +93,7 @@ const ChatMessage = ({ message }) => {
           }
           </div>
         <div className="message">
-          Hi there!
+
         </div>
       </div>
       </div>
