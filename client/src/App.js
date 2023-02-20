@@ -42,7 +42,7 @@ function clearChat(){
     <div className="App">
       <aside className="left-sidemenu">
         <div className="side-menu-button" onClick={clearChat}>
-        <span>+</span>  New chat
+        <span>+</span>  NEW CHAT
         </div> 
       </aside>
       <section className="chatbox">
