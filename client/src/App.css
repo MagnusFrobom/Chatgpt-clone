@@ -14,7 +14,7 @@
 }
 
 .side-menu-button {
-  font-family: monospace;
+  font-family: woff2, monospace;
   padding: 12px;
   background: rgb(47, 11, 65);
   background: linear-gradient(175deg, rgba(47, 11, 65, 1) 0%, rgba(23, 50, 71, 1) 100%);
